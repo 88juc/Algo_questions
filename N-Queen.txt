@@ -1,11 +1,14 @@
+9663번 N-Queen
+dfs 
+
 #include <stdio.h>
 
 typedef enum { false, true } bool;
 
 int ans = 0;
-bool checkCol[15];   //n(���� ũ��) �ִ�ġ
-bool Incdia[28];     //14+14�� �ִ� 
-bool Decdia[28];    
+bool checkCol[15];   //n(º¸µå Å©±â) ÃÖ´ëÄ¡
+bool Incdia[28];     //14+14°¡ ÃÖ´ë 
+bool Decdia[28];    
 
 bool ck(int row, int col, int n) {
 	if (checkCol[col]) return false;
