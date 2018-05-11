@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+typedef enum { false, true } bool;
+
+int ans = 0;
+bool checkCol[15];   //n(보드 크기) 최대치
+bool Incdia[28];     //14+14가 최대 
+bool Decdia[28];    
+
+bool ck(int row, int col, int n) {
+	if (checkCol[col]) return false;
+	if (Incdia[row + col]) return false;
+	if (Decdia[row + n - col]) return false;
+	else return true;
+}
+
+int dfs(int row, int n) {
+	int j;
+	if (row >= n) {
+		return 1;
+	}
+	for (j = 0; j < n; j++) {
+		if (ck(row, j, n)) {
+			checkCol[j] = true;
+			Incdia[row + j] = true;
+			Decdia[row + n - j] = true;
+			ans+=dfs(row + 1, n);
+			checkCol[j] = false;
+			Incdia[row + j] = false;
+			Decdia[row + n - j] = false;
+		}
+	}
+	return 0;
+}
+
+int main(){
+		int n;
+
+		scanf("%d", &n);
+		dfs(0, n);
+		printf("%d\n", ans);
+		return 0;
+	}
